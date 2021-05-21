@@ -10,5 +10,6 @@ public class EmptyStatementUsageCheck {
 
     public void nonCompliant() {
         ;;
+        int k = 0;;
     }
 }
