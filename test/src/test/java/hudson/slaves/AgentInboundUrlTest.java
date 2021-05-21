@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 package hudson.slaves;
-
+  
 import com.gargoylesoftware.htmlunit.xml.XmlPage;
 import hudson.Util;
 import hudson.model.Computer;
