@@ -1,5 +1,5 @@
 # Contributing to Jenkins
-
+ 
 This page provides information about contributing code to the Jenkins core codebase.
 
 :exclamation: There's a lot more to the Jenkins project than just code. For more information on the ways that you can contribute to the Jenkins project, see [Participate].
