@@ -15,7 +15,7 @@ properties([buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: 
 
 // TODO: Restore 'Windows' once https://groups.google.com/forum/#!topic/jenkinsci-dev/v9d-XosOp2s is resolved
 def buildTypes = ['Linux']
-def jdks = [8, 11]
+def jdks = [8, 11, 17]
 
 def builds = [:]
 for(i = 0; i < buildTypes.size(); i++) {
@@ -24,7 +24,7 @@ for(j = 0; j < jdks.size(); j++) {
     def jdk = jdks[j]
     builds["${buildType}-jdk${jdk}"] = {
         // see https://github.com/jenkins-infra/documentation/blob/master/ci.adoc#node-labels for information on what node types are available
-        node(buildType == 'Linux' ? (jdk == 8 ? 'maven' : 'maven-11') : buildType.toLowerCase()) {
+        node(buildType == 'Linux' ? (jdk == 8 ? 'maven' : (jdk == 11 ? 'maven-11' : 'maven-17')) : buildType.toLowerCase()) {
                 // First stage is actually checking out the source. Since we're using Multibranch
                 // currently, we can use "checkout scm".
                 stage('Checkout') {
@@ -87,7 +87,7 @@ builds.ath = {
         dir("sources") {
             checkout scm
             withMavenEnv(["JAVA_OPTS=-Xmx1536m -Xms512m",
-                          "MAVEN_OPTS=-Xmx1536m -Xms512m"], 8) {
+                          "MAVEN_OPTS=-Xmx1536m -Xms512m"], 'Linux', 8) {
                 sh "mvn --batch-mode --show-version -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -DskipTests -am -pl war package -Dmaven.repo.local=${pwd tmp: true}/m2repo"
             }
             dir("war/target") {
@@ -120,9 +120,15 @@ void withMavenEnv(List envVars = [], def buildType, def javaVersion, def body) {
     // to be made more flexible.
     // Using the "tool" Workflow call automatically installs those tools on the
     // node.
+    if (javaVersion == 17) {
+        env.JAVA_HOME = tool(name: "jdk17", type: 'hudson.model.JDK')
+        env.MAVEN_HOME = tool(name: "maven-17", type: 'hudson.tasks.Maven$MavenInstallation')
+        env.PATH+MVN = env.MAVEN_HOME + "/bin"
+        env.PATH+JDK = env.JAVA_HOME + "/bin"
+    }
     String mvntool = tool name: "mvn", type: 'hudson.tasks.Maven$MavenInstallation'
     String jdktool = tool name: "jdk${javaVersion}", type: 'hudson.model.JDK'
-
+    
     // Set JAVA_HOME, MAVEN_HOME and special PATH variables for the tools we're
     // using.
     List mvnEnv = ["PATH+MVN=${mvntool}/bin", "PATH+JDK=${jdktool}/bin", "JAVA_HOME=${jdktool}", "MAVEN_HOME=${mvntool}"]
