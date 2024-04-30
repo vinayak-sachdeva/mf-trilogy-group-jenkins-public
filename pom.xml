@@ -1,812 +1,740 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-The MIT License
+<ns0:project xmlns:ns0="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <ns0:modelVersion>4.0.0</ns0:modelVersion>
 
-Copyright (c) 2004-2011, Sun Microsystems, Inc., Kohsuke Kawaguchi, id:sorokh
+  <ns0:parent>
+    <ns0:groupId>org.jenkins-ci</ns0:groupId>
+    <ns0:artifactId>jenkins</ns0:artifactId>
+    <ns0:version>1.63</ns0:version>
+    <ns0:relativePath />
+  </ns0:parent>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+  <ns0:groupId>org.jenkins-ci.main</ns0:groupId>
+  <ns0:artifactId>jenkins-parent</ns0:artifactId>
+  <ns0:version>${revision}${changelist}</ns0:version>
+  <ns0:packaging>pom</ns0:packaging>
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+  <ns0:name>Jenkins main module</ns0:name>
+  <ns0:description>The module that constitutes the main jenkins.war</ns0:description>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+  <ns0:licenses>
+    <ns0:license>
+      <ns0:name>The MIT license</ns0:name>
+      <ns0:url>https://opensource.org/licenses/MIT</ns0:url>
+      <ns0:distribution>repo</ns0:distribution>
+    </ns0:license>
+  </ns0:licenses>
 
-  <parent>
-    <groupId>org.jenkins-ci</groupId>
-    <artifactId>jenkins</artifactId>
-    <version>1.63</version>
-    <relativePath />
-  </parent>
+  <ns0:modules>
+    <ns0:module>bom</ns0:module>
+    <ns0:module>core</ns0:module>
+    <ns0:module>war</ns0:module>
+    <ns0:module>test</ns0:module>
+    <ns0:module>cli</ns0:module>
+  </ns0:modules>
 
-  <groupId>org.jenkins-ci.main</groupId>
-  <artifactId>jenkins-parent</artifactId>
-  <version>${revision}${changelist}</version>
-  <packaging>pom</packaging>
+  <ns0:scm>
+    <ns0:connection>scm:git:git://github.com/jenkinsci/jenkins.git</ns0:connection>
+    <ns0:developerConnection>scm:git:ssh://git@github.com/jenkinsci/jenkins.git</ns0:developerConnection>
+    <ns0:url>https://github.com/jenkinsci/jenkins</ns0:url>
+    <ns0:tag>${scmTag}</ns0:tag>
+  </ns0:scm>
 
-  <name>Jenkins main module</name>
-  <description>The module that constitutes the main jenkins.war</description>
+  <ns0:distributionManagement>
+    <ns0:site>
+      <ns0:id>github-pages</ns0:id>
+      <ns0:url>gitsite:git@github.com/jenkinsci/maven-site.git:core</ns0:url>
+    </ns0:site>
+  </ns0:distributionManagement>
 
-  <licenses>
-    <license>
-      <name>The MIT license</name>
-      <url>https://opensource.org/licenses/MIT</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+  <ns0:issueManagement>
+    <ns0:system>jira</ns0:system>
+    <ns0:url>https://issues.jenkins-ci.org/browse/JENKINS/component/15593</ns0:url>
+  </ns0:issueManagement>
 
-  <modules>
-    <module>bom</module>
-    <module>core</module>
-    <module>war</module>
-    <module>test</module>
-    <module>cli</module>
-  </modules>
+  <ns0:properties>
+    <ns0:revision>2.293</ns0:revision>
+    <ns0:changelist>-SNAPSHOT</ns0:changelist>
 
-  <scm>
-    <connection>scm:git:git://github.com/jenkinsci/jenkins.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/jenkins.git</developerConnection>
-    <url>https://github.com/jenkinsci/jenkins</url>
-    <tag>${scmTag}</tag>
-  </scm>
+    
+    <ns0:project.build.sourceEncoding>UTF-8</ns0:project.build.sourceEncoding>
 
-  <distributionManagement>
-    <site>
-      <id>github-pages</id>
-      <url>gitsite:git@github.com/jenkinsci/maven-site.git:core</url>
-    </site>
-  </distributionManagement>
+    
+    <ns0:project.patchManagement.system>github</ns0:project.patchManagement.system>
+    <ns0:patch.request.organisation>jenkinsci</ns0:patch.request.organisation>
+    <ns0:patch.request.repository>jenkins</ns0:patch.request.repository>
+    <ns0:project.patchManagement.url>https://api.github.com</ns0:project.patchManagement.url>
+    <ns0:patch.tracker.serverId>jenkins-jira</ns0:patch.tracker.serverId>
 
-  <issueManagement>
-    <system>jira</system>
-    <url>https://issues.jenkins-ci.org/browse/JENKINS/component/15593</url>
-  </issueManagement>
+    <ns0:matrix-auth.version>2.6.6</ns0:matrix-auth.version>
+    <ns0:matrix-project.version>1.18</ns0:matrix-project.version>
+    <ns0:sorcerer.version>0.11</ns0:sorcerer.version>
+    <ns0:animal.sniffer.skip>${skipTests}</ns0:animal.sniffer.skip>
+    <ns0:java.level>8</ns0:java.level>
 
-  <properties>
-    <revision>2.293</revision>
-    <changelist>-SNAPSHOT</changelist>
+    <ns0:changelog.url>https://jenkins.io/changelog</ns0:changelog.url>
 
-    <!-- *.html files are in UTF-8, and *.properties are in iso-8859-1, so this configuration is actually incorrect,
-    but this suppresses a warning from Maven, and as long as we don't do filtering we should be OK. -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    
+    <ns0:remoting.version>4.7</ns0:remoting.version>
+    
+    <ns0:remoting.minimum.supported.version>3.14</ns0:remoting.minimum.supported.version>
 
-    <!-- configuration for patch tracker plugin  -->
-    <project.patchManagement.system>github</project.patchManagement.system>
-    <patch.request.organisation>jenkinsci</patch.request.organisation>
-    <patch.request.repository>jenkins</patch.request.repository>
-    <project.patchManagement.url>https://api.github.com</project.patchManagement.url>
-    <patch.tracker.serverId>jenkins-jira</patch.tracker.serverId>
+    
+    <ns0:findbugs.effort>Max</ns0:findbugs.effort>
+    <ns0:findbugs.threshold>High</ns0:findbugs.threshold>
+    <ns0:findbugs.excludeFilterFile>${project.basedir}/../src/findbugs/findbugs-excludes.xml</ns0:findbugs.excludeFilterFile>
 
-    <matrix-auth.version>2.6.6</matrix-auth.version>
-    <matrix-project.version>1.18</matrix-project.version>
-    <sorcerer.version>0.11</sorcerer.version>
-    <animal.sniffer.skip>${skipTests}</animal.sniffer.skip>
-    <java.level>8</java.level>
+    
+    <ns0:access-modifier-annotation.version>1.21</ns0:access-modifier-annotation.version>
+    <ns0:access-modifier-checker.version>1.21</ns0:access-modifier-checker.version>
+    <ns0:junit.jupiter.version>5.7.1</ns0:junit.jupiter.version>
+    <ns0:powermock.version>2.0.9</ns0:powermock.version>
+    <ns0:spotless.version>2.10.3</ns0:spotless.version>
+  </ns0:properties>
 
-    <changelog.url>https://jenkins.io/changelog</changelog.url>
+  
+  <ns0:repositories>
+    <ns0:repository>
+      <ns0:id>repo.jenkins-ci.org</ns0:id>
+      <ns0:url>https://repo.jenkins-ci.org/public/</ns0:url>
+      
+    </ns0:repository>
+  </ns0:repositories>
 
-    <!-- Bundled Remoting version -->
-    <remoting.version>4.7</remoting.version>
-    <!-- Minimum Remoting version, which is tested for API compatibility -->
-    <remoting.minimum.supported.version>3.14</remoting.minimum.supported.version>
+  <ns0:pluginRepositories>
+    <ns0:pluginRepository>
+      <ns0:id>repo.jenkins-ci.org</ns0:id>
+      <ns0:url>https://repo.jenkins-ci.org/public/</ns0:url>
+    </ns0:pluginRepository>
+  </ns0:pluginRepositories>
 
-    <!-- TODO: JENKINS-36716 - Switch to Medium once FindBugs is cleaned up, 430 issues on Mar 10, 2018 -->
-    <findbugs.effort>Max</findbugs.effort>
-    <findbugs.threshold>High</findbugs.threshold>
-    <findbugs.excludeFilterFile>${project.basedir}/../src/findbugs/findbugs-excludes.xml</findbugs.excludeFilterFile>
+  <ns0:dependencyManagement>
+    
+    <ns0:dependencies>
 
-    <!-- TODO keep these in sync -->
-    <access-modifier-annotation.version>1.21</access-modifier-annotation.version>
-    <access-modifier-checker.version>1.21</access-modifier-checker.version>
-    <junit.jupiter.version>5.7.1</junit.jupiter.version>
-    <powermock.version>2.0.9</powermock.version>
-    <spotless.version>2.10.3</spotless.version>
-  </properties>
+      <ns0:dependency>
+        <ns0:groupId>org.mockito</ns0:groupId>
+        <ns0:artifactId>mockito-core</ns0:artifactId>
+        <ns0:version>3.9.0</ns0:version>
+      </ns0:dependency>
 
-  <!-- Note that the 'repositories' and 'pluginRepositories' blocks below are actually copy-pasted
-       from the Jenkins org pom. This is on purpose to keep jenkins core buildable even if one has
-       *not* defined the specific details in the settings.xml file. -->
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-      <!-- allow snapshots -->
-    </repository>
-  </repositories>
+      <ns0:dependency>
+        <ns0:groupId>org.powermock</ns0:groupId>
+        <ns0:artifactId>powermock-module-junit4</ns0:artifactId>
+        <ns0:version>${powermock.version}</ns0:version>
+      </ns0:dependency>
+      <ns0:dependency>
+        <ns0:groupId>org.powermock</ns0:groupId>
+        <ns0:artifactId>powermock-api-mockito2</ns0:artifactId>
+        <ns0:version>${powermock.version}</ns0:version>
+      </ns0:dependency>
+      <ns0:dependency>
+        <ns0:groupId>org.objenesis</ns0:groupId>
+        <ns0:artifactId>objenesis</ns0:artifactId>
+        <ns0:version>3.2</ns0:version>
+      </ns0:dependency>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
+      <ns0:dependency>
+        
+        
+        <ns0:groupId>javax.servlet</ns0:groupId>
+        
+        <ns0:artifactId>servlet-api</ns0:artifactId>
+        <ns0:version>[0]</ns0:version>
+        
+        <ns0:scope>provided</ns0:scope>
+        <ns0:optional>true</ns0:optional>
+      </ns0:dependency>
+    </ns0:dependencies>
+  </ns0:dependencyManagement>
 
-  <dependencyManagement>
-    <!-- any dependencies that can be used by plugins must be defined in the bom and not here -->
-    <dependencies>
+  <ns0:dependencies>
+    <ns0:dependency>
+      
+      <ns0:groupId>org.codehaus.mojo</ns0:groupId>
+      <ns0:artifactId>animal-sniffer-annotations</ns0:artifactId>
+      <ns0:scope>provided</ns0:scope>
+      <ns0:optional>true</ns0:optional>
+    </ns0:dependency>
+    <ns0:dependency>
+      <ns0:groupId>org.jenkins-ci</ns0:groupId>
+      <ns0:artifactId>test-annotations</ns0:artifactId>
+      <ns0:scope>test</ns0:scope>
+      <ns0:version>1.3</ns0:version>
+    </ns0:dependency>
+    <ns0:dependency>
+      
+      <ns0:groupId>javax.servlet</ns0:groupId>
+      
+      <ns0:artifactId>servlet-api</ns0:artifactId>
+    </ns0:dependency>
+  </ns0:dependencies>
 
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>3.9.0</version>
-      </dependency>
+  <ns0:build>
+    <ns0:defaultGoal>install</ns0:defaultGoal>
+    <ns0:resources>
+      <ns0:resource>
+        <ns0:directory>${basedir}/src/main/resources</ns0:directory>
+        <ns0:filtering>false</ns0:filtering>
+      </ns0:resource>
+      <ns0:resource>
+        <ns0:directory>${basedir}/src/filter/resources</ns0:directory>
+        <ns0:filtering>true</ns0:filtering>
+      </ns0:resource>
+    </ns0:resources>
+    <ns0:pluginManagement>
+      <ns0:plugins>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-deploy-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-dependency-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-compiler-plugin</ns0:artifactId>
+          
+          <ns0:configuration>
+            <ns0:fork>true</ns0:fork>
+            <ns0:compilerReuseStrategy>alwaysNew</ns0:compilerReuseStrategy>
+            <ns0:compilerArgs>
+              
+              <ns0:compilerArg>-Xpkginfo:always</ns0:compilerArg>
+            </ns0:compilerArgs>
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-gpg-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-install-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-javadoc-plugin</ns0:artifactId>
+          
+          <ns0:configuration>
+            <ns0:quiet>true</ns0:quiet>
+            <ns0:doclint>all,-missing</ns0:doclint>
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-jar-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-war-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-surefire-plugin</ns0:artifactId>
+          
+          <ns0:configuration>
+            <ns0:argLine>-noverify</ns0:argLine> 
+            <ns0:systemPropertyVariables>
+              <ns0:java.io.tmpdir>${project.build.directory}</ns0:java.io.tmpdir>
+              <ns0:forkedProcessTimeoutInSeconds>3600</ns0:forkedProcessTimeoutInSeconds>
+              <ns0:java.awt.headless>true</ns0:java.awt.headless>
+            </ns0:systemPropertyVariables>
+            <ns0:trimStackTrace>false</ns0:trimStackTrace> 
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-assembly-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:artifactId>maven-jarsigner-plugin</ns0:artifactId>
+          <ns0:version>3.0.0</ns0:version>
+          <ns0:configuration>
+            
+            <ns0:alias>${hudson.sign.alias}</ns0:alias>
+            <ns0:storepass>${hudson.sign.storepass}</ns0:storepass>
+            <ns0:keystore>${hudson.sign.keystore}</ns0:keystore>
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-resources-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          
+          <ns0:groupId>org.kohsuke.stapler</ns0:groupId>
+          <ns0:artifactId>maven-stapler-plugin</ns0:artifactId>
+          
+          <ns0:extensions>true</ns0:extensions>
+          <ns0:dependencies>
+            <ns0:dependency>
+              <ns0:groupId>org.jvnet.maven-jellydoc-plugin</ns0:groupId>
+              <ns0:artifactId>maven-jellydoc-plugin</ns0:artifactId>
+              <ns0:version>1.5</ns0:version>
+            </ns0:dependency>
+          </ns0:dependencies>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.kohsuke</ns0:groupId>
+          <ns0:artifactId>access-modifier-checker</ns0:artifactId>
+          <ns0:version>${access-modifier-checker.version}</ns0:version>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>com.cloudbees</ns0:groupId>
+          <ns0:artifactId>maven-license-plugin</ns0:artifactId>
+          
+          <ns0:executions>
+            <ns0:execution>
+              <ns0:goals>
+                <ns0:goal>process</ns0:goal>
+              </ns0:goals>
+              <ns0:phase>compile</ns0:phase>
+              <ns0:configuration>
+                <ns0:requireCompleteLicenseInfo>true</ns0:requireCompleteLicenseInfo>
+                <ns0:script>../licenseCompleter.groovy</ns0:script>
+              </ns0:configuration>
+            </ns0:execution>
+          </ns0:executions>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.jvnet.localizer</ns0:groupId>
+          <ns0:artifactId>localizer-maven-plugin</ns0:artifactId>
+          
+          <ns0:configuration>
+            <ns0:outputEncoding>UTF-8</ns0:outputEncoding>
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.jvnet.hudson.tools</ns0:groupId>
+          <ns0:artifactId>maven-encoding-plugin</ns0:artifactId>
+          <ns0:version>1.1</ns0:version>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>com.infradna.tool</ns0:groupId>
+          <ns0:artifactId>bridge-method-injector</ns0:artifactId>
+          <ns0:version>1.18</ns0:version>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.codehaus.mojo</ns0:groupId>
+          <ns0:artifactId>antlr-maven-plugin</ns0:artifactId>
+          <ns0:version>2.2</ns0:version>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-pmd-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.jvnet.updatecenter2</ns0:groupId>
+          <ns0:artifactId>maven-makepkgs-plugin</ns0:artifactId>
+          <ns0:version>0.6.2</ns0:version>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-site-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-enforcer-plugin</ns0:artifactId>
+          
+        </ns0:plugin>
+        
+        <ns0:plugin>
+          <ns0:groupId>org.eclipse.m2e</ns0:groupId>
+          <ns0:artifactId>lifecycle-mapping</ns0:artifactId>
+          
+          <ns0:configuration>
+            <ns0:lifecycleMappingMetadata>
+              <ns0:pluginExecutions>
+                <ns0:pluginExecution>
+                  <ns0:pluginExecutionFilter>
+                    <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+                    <ns0:artifactId>maven-dependency-plugin</ns0:artifactId>
+                    
+                    <ns0:versionRange>[2.3,)</ns0:versionRange>
+                    <ns0:goals>
+                      <ns0:goal>list</ns0:goal>
+                      <ns0:goal>unpack-dependencies</ns0:goal>
+                    </ns0:goals>
+                  </ns0:pluginExecutionFilter>
+                  <ns0:action>
+                    <ns0:ignore />
+                  </ns0:action>
+                </ns0:pluginExecution>
+              </ns0:pluginExecutions>
+            </ns0:lifecycleMappingMetadata>
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.codehaus.mojo</ns0:groupId>
+          <ns0:artifactId>animal-sniffer-maven-plugin</ns0:artifactId>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>com.github.spotbugs</ns0:groupId>
+          <ns0:artifactId>spotbugs-maven-plugin</ns0:artifactId>
+          
+          <ns0:configuration>
+            <ns0:maxHeap>768</ns0:maxHeap>
+          </ns0:configuration>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+          <ns0:artifactId>maven-checkstyle-plugin</ns0:artifactId>
+          <ns0:dependencies>
+            <ns0:dependency>
+              <ns0:groupId>com.puppycrawl.tools</ns0:groupId>
+              <ns0:artifactId>checkstyle</ns0:artifactId>
+              <ns0:version>8.42</ns0:version>
+            </ns0:dependency>
+          </ns0:dependencies>
+          
+          <ns0:configuration>
+            <ns0:consoleOutput>true</ns0:consoleOutput>
+            <ns0:failsOnError>true</ns0:failsOnError>
+            <ns0:includeTestSourceDirectory>true</ns0:includeTestSourceDirectory>
+            
+            <ns0:checkstyleRules>
+              <ns0:module name="Checker">
+                <ns0:module name="UniqueProperties" />
+                <ns0:module name="TreeWalker">
+                  
+                  <ns0:module name="MissingOverride" />
+                  <ns0:module name="AnnotationUseStyle" />
+                  
+                  <ns0:module name="OneTopLevelClass" />
+                  
+                  <ns0:module name="AvoidNoArgumentSuperConstructorCall" />
+                  <ns0:module name="CovariantEquals" />
+                  <ns0:module name="EqualsHashCode" />
+                  <ns0:module name="NoEnumTrailingComma" />
+                  <ns0:module name="OneStatementPerLine" />
+                  <ns0:module name="SimplifyBooleanExpression" />
+                  <ns0:module name="StringLiteralEquality" />
+                  <ns0:module name="UnnecessarySemicolonAfterOuterTypeDeclaration" />
+                  <ns0:module name="UnnecessarySemicolonAfterTypeMemberDeclaration" />
+                  <ns0:module name="UnnecessarySemicolonInEnumeration" />
+                  <ns0:module name="UnnecessarySemicolonInTryWithResources" />
+                  
+                  <ns0:module name="AvoidStarImport" />
+                  <ns0:module name="IllegalImport">
+                    
+                    <ns0:property name="illegalClasses" value="javax.annotation.MatchesPattern.Checker, javax.annotation.Nonnegative.Checker, javax.annotation.Nonnull.Checker, javax.annotation.RegEx.Checker, javax.annotation.CheckForNull, javax.annotation.CheckForSigned, javax.annotation.CheckReturnValue, javax.annotation.Detainted, javax.annotation.MatchesPattern, javax.annotation.Nonnegative, javax.annotation.Nonnull, javax.annotation.Nullable, javax.annotation.OverridingMethodsMustInvokeSuper, javax.annotation.ParametersAreNonnullByDefault, javax.annotation.ParametersAreNullableByDefault, javax.annotation.PropertyKey, javax.annotation.RegEx, javax.annotation.Signed, javax.annotation.Syntax, javax.annotation.Tainted, javax.annotation.Untainted, javax.annotation.WillClose, javax.annotation.WillCloseWhenClosed, javax.annotation.WillNotClose, javax.annotation.concurrent.GuardedBy, javax.annotation.concurrent.Immutable, javax.annotation.concurrent.NotThreadSafe, javax.annotation.concurrent.ThreadSafe, javax.annotation.meta.TypeQualifierValidator, javax.annotation.meta.When, javax.annotation.meta.Exclusive, javax.annotation.meta.Exhaustive, javax.annotation.meta.TypeQualifier, javax.annotation.meta.TypeQualifierDefault, javax.annotation.meta.TypeQualifierNickname" />
+                  </ns0:module>
+                  <ns0:module name="RedundantImport" />
+                  
+                  <ns0:module name="ArrayTypeStyle" />
+                  <ns0:module name="OuterTypeFilename" />
+                  <ns0:module name="UpperEll" />
+                  
+                  <ns0:module name="ModifierOrder" />
+                  <ns0:module name="RedundantModifier" />
+                </ns0:module>
+              </ns0:module>
+            </ns0:checkstyleRules>
+          </ns0:configuration>
+          <ns0:executions>
+            <ns0:execution>
+              <ns0:id>validate</ns0:id>
+              <ns0:phase>validate</ns0:phase>
+              <ns0:goals>
+                <ns0:goal>check</ns0:goal>
+              </ns0:goals>
+            </ns0:execution>
+          </ns0:executions>
+        </ns0:plugin>
+        <ns0:plugin>
+          <ns0:groupId>com.diffplug.spotless</ns0:groupId>
+          <ns0:artifactId>spotless-maven-plugin</ns0:artifactId>
+          <ns0:version>${spotless.version}</ns0:version>
+          <ns0:configuration>
+            <ns0:java>
+              <ns0:endWithNewline />
+              <ns0:removeUnusedImports />
+            </ns0:java>
+          </ns0:configuration>
+          <ns0:executions>
+            <ns0:execution>
+              
+              <ns0:goals>
+                
+                <ns0:goal>check</ns0:goal>
+              </ns0:goals>
+            </ns0:execution>
+          </ns0:executions>
+        </ns0:plugin>
+      </ns0:plugins>
+    </ns0:pluginManagement>
 
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-module-junit4</artifactId>
-        <version>${powermock.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-mockito2</artifactId>
-        <version>${powermock.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.objenesis</groupId>
-        <artifactId>objenesis</artifactId>
-        <version>3.2</version>
-      </dependency>
+    <ns0:plugins>
+      <ns0:plugin>
+        <ns0:artifactId>maven-release-plugin</ns0:artifactId>
+        
+        <ns0:configuration>
+          
+          <ns0:arguments>-P release,sign</ns0:arguments>
+          
+          <ns0:preparationGoals>clean install</ns0:preparationGoals>
+          <ns0:goals>-DskipTests -Danimal.sniffer.skip=false javadoc:javadoc deploy</ns0:goals>
+          <ns0:pushChanges>false</ns0:pushChanges>
+          <ns0:localCheckout>true</ns0:localCheckout>
+          <ns0:tagNameFormat>jenkins-@{project.version}</ns0:tagNameFormat>
+        </ns0:configuration>
+      </ns0:plugin>
+      <ns0:plugin>
+        <ns0:artifactId>maven-remote-resources-plugin</ns0:artifactId>
+        
+        <ns0:executions>
+          <ns0:execution>
+            <ns0:goals>
+              <ns0:goal>process</ns0:goal>
+            </ns0:goals>
+            <ns0:configuration>
+              <ns0:resourceBundles>
+                <ns0:resourceBundle>org.jvnet.hudson:license:1.0</ns0:resourceBundle>
+              </ns0:resourceBundles>
+            </ns0:configuration>
+          </ns0:execution>
+        </ns0:executions>
+      </ns0:plugin>
+      <ns0:plugin>
+        <ns0:groupId>org.codehaus.mojo</ns0:groupId>
+        <ns0:artifactId>animal-sniffer-maven-plugin</ns0:artifactId>
+        <ns0:executions>
+          <ns0:execution>
+            <ns0:goals>
+              <ns0:goal>check</ns0:goal>
+            </ns0:goals>
+          </ns0:execution>
+        </ns0:executions>
+        <ns0:configuration>
+          <ns0:signature>
+            <ns0:groupId>org.codehaus.mojo.signature</ns0:groupId>
+            <ns0:artifactId>java1${java.level}</ns0:artifactId>
+            <ns0:version>1.0</ns0:version>
+          </ns0:signature>
+        </ns0:configuration>
+      </ns0:plugin>
 
-      <dependency>
-        <!--  make sure these old servlet versions are never used by us or by any plugins which end up depending on this version -->
-        <!--  plugin-pom tries to fudge servlet support to be compatible with cores < 2.0 and JTH which needs 3.x for jetty, and ends up causing issues with some IDEs -->
-        <groupId>javax.servlet</groupId>
-        <!-- the old artifactID for the servlet API -->
-        <artifactId>servlet-api</artifactId>
-        <version>[0]</version>
-        <!--
-          "[0]" is a range that must be exactly 0
-          this is different to "0" which is hint to use version 0.
-          therefore unless anyone else uses ranges (they should not) this version will always win
-          We have deployed a version 0 to jenkins repo which has an empty jar
-          This prevents conflicts between the old Servet API and the new Servlet API as the groupIDs have changed
-          see https://github.com/jenkinsci/jenkins/pull/3033/files#r141325857 for a fuller description
-        -->
-        <scope>provided</scope>
-        <optional>true</optional>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+      <ns0:plugin>
+        <ns0:artifactId>maven-compiler-plugin</ns0:artifactId>
+        
+        <ns0:configuration>
+          <ns0:source>1.${java.level}</ns0:source>
+          <ns0:target>1.${java.level}</ns0:target>
+          
+        </ns0:configuration>
+      </ns0:plugin>
 
-  <dependencies>
-    <dependency>
-      <!-- for JRE requirement check annotation -->
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional><!-- no need to have this at runtime -->
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>test-annotations</artifactId>
-      <scope>test</scope>
-      <version>1.3</version>
-    </dependency>
-    <dependency>
-      <!-- make sure our dependency tree and all others are clean of the legacy servlet api.  -->
-      <groupId>javax.servlet</groupId>
-      <!-- the old artifactID for the servlet API -->
-      <artifactId>servlet-api</artifactId>
-    </dependency>
-  </dependencies>
+      <ns0:plugin>
+        <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+        <ns0:artifactId>maven-enforcer-plugin</ns0:artifactId>
+        
+        <ns0:executions>
+          <ns0:execution>
+            <ns0:id>enforce-banned-dependencies</ns0:id>
+            <ns0:goals>
+              <ns0:goal>enforce</ns0:goal>
+            </ns0:goals>
+            <ns0:configuration>
+              <ns0:rules>
+                <ns0:bannedDependencies>
+                  <ns0:excludes>
+                    <ns0:exclude>org.sonatype.sisu:sisu-guice</ns0:exclude>
+                    <ns0:exclude>log4j:log4j:*:jar:compile</ns0:exclude>
+                    <ns0:exclude>log4j:log4j:*:jar:runtime</ns0:exclude>
+                    <ns0:exclude>commons-logging:commons-logging:*:jar:compile</ns0:exclude>
+                    <ns0:exclude>commons-logging:commons-logging:*:jar:runtime</ns0:exclude>
+                  </ns0:excludes>
+                </ns0:bannedDependencies>
+              </ns0:rules>
+            </ns0:configuration>
+          </ns0:execution>
+        </ns0:executions>
+      </ns0:plugin>
+      <ns0:plugin>
+        <ns0:groupId>org.apache.maven.plugins</ns0:groupId>
+        <ns0:artifactId>maven-checkstyle-plugin</ns0:artifactId>
+        
+      </ns0:plugin>
+      <ns0:plugin>
+        <ns0:groupId>com.diffplug.spotless</ns0:groupId>
+        <ns0:artifactId>spotless-maven-plugin</ns0:artifactId>
+        <ns0:version>${spotless.version}</ns0:version>
+      </ns0:plugin>
+    </ns0:plugins>
 
-  <build>
-    <defaultGoal>install</defaultGoal>
-    <resources>
-      <resource>
-        <directory>${basedir}/src/main/resources</directory>
-        <filtering>false</filtering>
-      </resource>
-      <resource>
-        <directory>${basedir}/src/filter/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <fork>true</fork>
-            <compilerReuseStrategy>alwaysNew</compilerReuseStrategy>
-            <compilerArgs>
-              <!--
-                always compile package-info.java for useIncrementalCompilation
-                ref: https://stackoverflow.com/questions/6770455/maven-compiling-package-info-java-to-package-info-class
-              -->
-              <compilerArg>-Xpkginfo:always</compilerArg>
-            </compilerArgs>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <quiet>true</quiet>
-            <doclint>all,-missing</doclint>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <argLine>-noverify</argLine> <!-- some versions of JDK7/8 causes VerifyError during mock tests: http://code.google.com/p/powermock/issues/detail?id=504 -->
-            <systemPropertyVariables>
-              <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
-              <forkedProcessTimeoutInSeconds>3600</forkedProcessTimeoutInSeconds>
-              <java.awt.headless>true</java.awt.headless>
-            </systemPropertyVariables>
-            <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <artifactId>maven-jarsigner-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-            <!--
-              during the development, debug profile will cause
-              the jars to be signed by a self-certified dummy public key.
+    <ns0:extensions>
+      <ns0:extension>
+        <ns0:groupId>org.kohsuke</ns0:groupId>
+        <ns0:artifactId>wagon-gitsite</ns0:artifactId>
+        <ns0:version>0.3.5</ns0:version>
+      </ns0:extension>
+    </ns0:extensions>
+  </ns0:build>
 
-              For release, you should define the real values in ~/.m2/settings.xml
-            -->
-            <alias>${hudson.sign.alias}</alias>
-            <storepass>${hudson.sign.storepass}</storepass>
-            <keystore>${hudson.sign.keystore}</keystore>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <!--
-            Both test harness and core uses stapler as an extension,
-            and apparently without having extension preloaded at the parent, the main artifact of the 'test' module
-            ends up installed with 'stapler-jar' extension (which normally is an indication that the ArtifactTypeHandler
-            defined in this extension is not getting picked up.)
-
-            To avoid this problem, I'm defining an extension here. Not sure if the nested <dependencies> is necessary.
-            It's also possible that I misdiagnosed the problem and the root cause is something entirely different.
-
-            To test if you can remove this work around, do a rebuild from main and see if the test harness
-            is installed with the right extension into the local repository.
-          -->
-          <groupId>org.kohsuke.stapler</groupId>
-          <artifactId>maven-stapler-plugin</artifactId>
-          <!-- version specified in parent pom -->
-          <extensions>true</extensions>
-          <dependencies>
-            <dependency>
-              <groupId>org.jvnet.maven-jellydoc-plugin</groupId>
-              <artifactId>maven-jellydoc-plugin</artifactId>
-              <version>1.5</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.kohsuke</groupId>
-          <artifactId>access-modifier-checker</artifactId>
-          <version>${access-modifier-checker.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>com.cloudbees</groupId>
-          <artifactId>maven-license-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-          <executions>
-            <execution>
-              <goals>
-                <goal>process</goal>
-              </goals>
-              <phase>compile</phase>
-              <configuration>
-                <requireCompleteLicenseInfo>true</requireCompleteLicenseInfo>
-                <script>../licenseCompleter.groovy</script>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.jvnet.localizer</groupId>
-          <artifactId>localizer-maven-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <outputEncoding>UTF-8</outputEncoding>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.jvnet.hudson.tools</groupId>
-          <artifactId>maven-encoding-plugin</artifactId>
-          <version>1.1</version>
-        </plugin>
-        <plugin>
-          <groupId>com.infradna.tool</groupId>
-          <artifactId>bridge-method-injector</artifactId>
-          <version>1.18</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>antlr-maven-plugin</artifactId>
-          <version>2.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.jvnet.updatecenter2</groupId>
-          <artifactId>maven-makepkgs-plugin</artifactId>
-          <version>0.6.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-        </plugin>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <!-- Version specified in parent POM -->
-                    <versionRange>[2.3,)</versionRange>
-                    <goals>
-                      <goal>list</goal>
-                      <goal>unpack-dependencies</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-        </plugin>
-        <plugin>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-maven-plugin</artifactId>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <maxHeap>768</maxHeap>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <dependencies>
-            <dependency>
-              <groupId>com.puppycrawl.tools</groupId>
-              <artifactId>checkstyle</artifactId>
-              <version>8.42</version>
-            </dependency>
-          </dependencies>
-          <!-- Version specified in parent POM -->
-          <configuration>
-            <consoleOutput>true</consoleOutput>
-            <failsOnError>true</failsOnError>
-            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-            <!-- define here because checkstyle and multi module is a PITA -->
-            <checkstyleRules>
-              <module name="Checker">
-                <module name="UniqueProperties" />
-                <module name="TreeWalker">
-                  <!--
-                    Annotations: https://checkstyle.sourceforge.io/config_annotation.html
-                  -->
-                  <module name="MissingOverride" />
-                  <module name="AnnotationUseStyle" />
-                  <!--
-                    Class Design: https://checkstyle.sourceforge.io/config_design.html
-                  -->
-                  <module name="OneTopLevelClass" />
-                  <!--
-                    Coding: https://checkstyle.sourceforge.io/config_coding.html
-                  -->
-                  <module name="AvoidNoArgumentSuperConstructorCall" />
-                  <module name="CovariantEquals" />
-                  <module name="EqualsHashCode" />
-                  <module name="NoEnumTrailingComma" />
-                  <module name="OneStatementPerLine" />
-                  <module name="SimplifyBooleanExpression" />
-                  <module name="StringLiteralEquality" />
-                  <module name="UnnecessarySemicolonAfterOuterTypeDeclaration" />
-                  <module name="UnnecessarySemicolonAfterTypeMemberDeclaration" />
-                  <module name="UnnecessarySemicolonInEnumeration" />
-                  <module name="UnnecessarySemicolonInTryWithResources" />
-                  <!--
-                    Imports: https://checkstyle.sourceforge.io/config_imports.html
-                  -->
-                  <module name="AvoidStarImport" />
-                  <module name="IllegalImport">
-                    <!-- prevent the use of jsr-305 annotations -->
-                    <property name="illegalClasses" value="javax.annotation.MatchesPattern.Checker, javax.annotation.Nonnegative.Checker, javax.annotation.Nonnull.Checker, javax.annotation.RegEx.Checker, javax.annotation.CheckForNull, javax.annotation.CheckForSigned, javax.annotation.CheckReturnValue, javax.annotation.Detainted, javax.annotation.MatchesPattern, javax.annotation.Nonnegative, javax.annotation.Nonnull, javax.annotation.Nullable, javax.annotation.OverridingMethodsMustInvokeSuper, javax.annotation.ParametersAreNonnullByDefault, javax.annotation.ParametersAreNullableByDefault, javax.annotation.PropertyKey, javax.annotation.RegEx, javax.annotation.Signed, javax.annotation.Syntax, javax.annotation.Tainted, javax.annotation.Untainted, javax.annotation.WillClose, javax.annotation.WillCloseWhenClosed, javax.annotation.WillNotClose, javax.annotation.concurrent.GuardedBy, javax.annotation.concurrent.Immutable, javax.annotation.concurrent.NotThreadSafe, javax.annotation.concurrent.ThreadSafe, javax.annotation.meta.TypeQualifierValidator, javax.annotation.meta.When, javax.annotation.meta.Exclusive, javax.annotation.meta.Exhaustive, javax.annotation.meta.TypeQualifier, javax.annotation.meta.TypeQualifierDefault, javax.annotation.meta.TypeQualifierNickname" />
-                  </module>
-                  <module name="RedundantImport" />
-                  <!--
-                    Miscellaneous: https://checkstyle.sourceforge.io/config_misc.html
-                  -->
-                  <module name="ArrayTypeStyle" />
-                  <module name="OuterTypeFilename" />
-                  <module name="UpperEll" />
-                  <!--
-                    Modifiers: https://checkstyle.sourceforge.io/config_modifier.html
-                  -->
-                  <module name="ModifierOrder" />
-                  <module name="RedundantModifier" />
-                </module>
-              </module>
-            </checkstyleRules>
-          </configuration>
-          <executions>
-            <execution>
-              <id>validate</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>com.diffplug.spotless</groupId>
-          <artifactId>spotless-maven-plugin</artifactId>
-          <version>${spotless.version}</version>
-          <configuration>
-            <java>
-              <endWithNewline />
-              <removeUnusedImports />
-            </java>
-          </configuration>
-          <executions>
-            <execution>
-              <!-- Runs in verify phase by default -->
-              <goals>
-                <!-- Can be disabled using -Dspotless.check.skip -->
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
-    <plugins>
-      <plugin>
-        <artifactId>maven-release-plugin</artifactId>
-        <!-- Version specified in parent POM -->
-        <configuration>
-          <!-- enable release profile during the release, create IPS package, and sign bits. -->
-          <arguments>-P release,sign</arguments>
-          <!-- work around for a bug in javadoc plugin that causes the release to fail. see MRELEASE-271 -->
-          <preparationGoals>clean install</preparationGoals>
-          <goals>-DskipTests -Danimal.sniffer.skip=false javadoc:javadoc deploy</goals>
-          <pushChanges>false</pushChanges>
-          <localCheckout>true</localCheckout>
-          <tagNameFormat>jenkins-@{project.version}</tagNameFormat>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-remote-resources-plugin</artifactId>
-        <!-- Version specified in parent POM -->
-        <executions>
-          <execution>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <configuration>
-              <resourceBundles>
-                <resourceBundle>org.jvnet.hudson:license:1.0</resourceBundle>
-              </resourceBundles>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java1${java.level}</artifactId>
-            <version>1.0</version>
-          </signature>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <!-- Version specified in parent POM -->
-        <configuration>
-          <source>1.${java.level}</source>
-          <target>1.${java.level}</target>
-          <!-- default reuseCreated is more performant
-          feel free to uncomment if you have any issues on your platform
-          <compilerReuseStrategy>alwaysNew</compilerReuseStrategy>
-          -->
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <!-- Version specified in parent POM -->
-        <executions>
-          <execution>
-            <id>enforce-banned-dependencies</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <bannedDependencies>
-                  <excludes>
-                    <exclude>org.sonatype.sisu:sisu-guice</exclude>
-                    <exclude>log4j:log4j:*:jar:compile</exclude>
-                    <exclude>log4j:log4j:*:jar:runtime</exclude>
-                    <exclude>commons-logging:commons-logging:*:jar:compile</exclude>
-                    <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
-                  </excludes>
-                </bannedDependencies>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <!-- Version specified in parent POM -->
-      </plugin>
-      <plugin>
-        <groupId>com.diffplug.spotless</groupId>
-        <artifactId>spotless-maven-plugin</artifactId>
-        <version>${spotless.version}</version>
-      </plugin>
-    </plugins>
-
-    <extensions>
-      <extension>
-        <groupId>org.kohsuke</groupId>
-        <artifactId>wagon-gitsite</artifactId>
-        <version>0.3.5</version>
-      </extension>
-    </extensions>
-  </build>
-
-  <profiles>
-    <profile>
-      <id>metrics</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-maven-plugin</artifactId>
-            <!-- Version specified in parent POM -->
-            <configuration>
-              <threshold>High</threshold>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>debug</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <hudson.sign.alias>jenkins</hudson.sign.alias>
-        <hudson.sign.keystore>../dummy.keystore</hudson.sign.keystore>
-        <hudson.sign.storepass>jenkins</hudson.sign.storepass>
-      </properties>
-    </profile>
-    <profile>
-      <id>sorcerer</id>
-      <reporting>
-        <plugins>
-          <plugin>
-            <groupId>org.kohsuke.sorcerer</groupId>
-            <artifactId>maven-sorcerer-plugin</artifactId>
-            <version>${sorcerer.version}</version>
-            <configuration>
-              <source>1.${java.level}</source>
-            </configuration>
-          </plugin>
-        </plugins>
-      </reporting>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.kohsuke.sorcerer</groupId>
-            <artifactId>maven-sorcerer-plugin</artifactId>
-            <version>${sorcerer.version}</version>
-            <configuration>
-              <source>1.${java.level}</source>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <!-- Version specified in parent POM -->
-            <inherited>false</inherited>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <phase>package</phase>
-                <configuration>
-                  <finalName>jenkins-${project.version}</finalName>
-                  <descriptors>
-                    <descriptor>assembly-src.xml</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <!-- Version specified in parent POM -->
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>lts-release</id>
-      <properties>
-        <changelog.url>https://jenkins.io/changelog-stable</changelog.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>m2e</id>
-      <properties>
-        <m2BuildDirectory>target</m2BuildDirectory>
-      </properties>
-      <activation>
-        <property>
-          <name>m2e.version</name>
-        </property>
-      </activation>
-      <build>
-        <directory>${m2BuildDirectory}</directory>
-        <plugins>
-          <plugin>
-            <groupId>org.maven.ide.eclipse</groupId>
-            <artifactId>lifecycle-mapping</artifactId>
-            <version>0.12.0</version>
-            <configuration>
-              <mappingId>customizable</mappingId>
-              <configurators>
-                <configurator id="org.maven.ide.eclipse.jdt.javaConfigurator" />
-                <configurator id="org.maven.ide.eclipse.plexus.annotations.plexusConfigurator" />
-              </configurators>
-              <mojoExecutions>
-                <mojoExecution>org.apache.maven.plugins:maven-resources-plugin::</mojoExecution>
-              </mojoExecutions>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>specific-test</id>
-      <activation>
-        <property>
-          <name>test</name>
-        </property>
-      </activation>
-      <properties>
-        <failIfNoTests>false</failIfNoTests>
-      </properties>
-    </profile>
-    <profile>
-      <id>jdk11</id>
-      <properties>
-        <!-- TODO: https://issues.jenkins-ci.org/browse/JENKINS-53788 (JDK11 issue on CI) -->
-        <doclint>none</doclint>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-        <!-- release is needed for reliable cross compilation. It is supported
-        starting JDK 9, but as the only earlier version we support is 8, it would
-        be either compiled by javac from 8 or one from a newer compiler that
-        correctly handle the release flag. This will replace both source and target
-        once we drop support for JDK 8 that only recognize source and target. -->
-        <maven.compiler.release>${java.level}</maven.compiler.release>
-      </properties>
-      <activation>
-        <jdk>11</jdk>
-      </activation>
-    </profile>
-  </profiles>
-</project>
+  <ns0:profiles>
+    <ns0:profile>
+      <ns0:id>metrics</ns0:id>
+      <ns0:build>
+        <ns0:plugins>
+          <ns0:plugin>
+            <ns0:groupId>com.github.spotbugs</ns0:groupId>
+            <ns0:artifactId>spotbugs-maven-plugin</ns0:artifactId>
+            
+            <ns0:configuration>
+              <ns0:threshold>High</ns0:threshold>
+            </ns0:configuration>
+          </ns0:plugin>
+        </ns0:plugins>
+      </ns0:build>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>debug</ns0:id>
+      <ns0:activation>
+        <ns0:activeByDefault>true</ns0:activeByDefault>
+      </ns0:activation>
+      <ns0:properties>
+        <ns0:hudson.sign.alias>jenkins</ns0:hudson.sign.alias>
+        <ns0:hudson.sign.keystore>../dummy.keystore</ns0:hudson.sign.keystore>
+        <ns0:hudson.sign.storepass>jenkins</ns0:hudson.sign.storepass>
+      </ns0:properties>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>sorcerer</ns0:id>
+      <ns0:reporting>
+        <ns0:plugins>
+          <ns0:plugin>
+            <ns0:groupId>org.kohsuke.sorcerer</ns0:groupId>
+            <ns0:artifactId>maven-sorcerer-plugin</ns0:artifactId>
+            <ns0:version>${sorcerer.version}</ns0:version>
+            <ns0:configuration>
+              <ns0:source>1.${java.level}</ns0:source>
+            </ns0:configuration>
+          </ns0:plugin>
+        </ns0:plugins>
+      </ns0:reporting>
+      <ns0:build>
+        <ns0:plugins>
+          <ns0:plugin>
+            <ns0:groupId>org.kohsuke.sorcerer</ns0:groupId>
+            <ns0:artifactId>maven-sorcerer-plugin</ns0:artifactId>
+            <ns0:version>${sorcerer.version}</ns0:version>
+            <ns0:configuration>
+              <ns0:source>1.${java.level}</ns0:source>
+            </ns0:configuration>
+          </ns0:plugin>
+        </ns0:plugins>
+      </ns0:build>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>release</ns0:id>
+      <ns0:build>
+        <ns0:plugins>
+          <ns0:plugin>
+            <ns0:artifactId>maven-assembly-plugin</ns0:artifactId>
+            
+            <ns0:inherited>false</ns0:inherited>
+            <ns0:executions>
+              <ns0:execution>
+                <ns0:goals>
+                  <ns0:goal>single</ns0:goal>
+                </ns0:goals>
+                <ns0:phase>package</ns0:phase>
+                <ns0:configuration>
+                  <ns0:finalName>jenkins-${project.version}</ns0:finalName>
+                  <ns0:descriptors>
+                    <ns0:descriptor>assembly-src.xml</ns0:descriptor>
+                  </ns0:descriptors>
+                </ns0:configuration>
+              </ns0:execution>
+            </ns0:executions>
+          </ns0:plugin>
+          <ns0:plugin>
+            <ns0:artifactId>maven-gpg-plugin</ns0:artifactId>
+            
+            <ns0:executions>
+              <ns0:execution>
+                <ns0:id>sign-artifacts</ns0:id>
+                <ns0:phase>verify</ns0:phase>
+                <ns0:goals>
+                  <ns0:goal>sign</ns0:goal>
+                </ns0:goals>
+              </ns0:execution>
+            </ns0:executions>
+          </ns0:plugin>
+        </ns0:plugins>
+      </ns0:build>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>lts-release</ns0:id>
+      <ns0:properties>
+        <ns0:changelog.url>https://jenkins.io/changelog-stable</ns0:changelog.url>
+      </ns0:properties>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>m2e</ns0:id>
+      <ns0:properties>
+        <ns0:m2BuildDirectory>target</ns0:m2BuildDirectory>
+      </ns0:properties>
+      <ns0:activation>
+        <ns0:property>
+          <ns0:name>m2e.version</ns0:name>
+        </ns0:property>
+      </ns0:activation>
+      <ns0:build>
+        <ns0:directory>${m2BuildDirectory}</ns0:directory>
+        <ns0:plugins>
+          <ns0:plugin>
+            <ns0:groupId>org.maven.ide.eclipse</ns0:groupId>
+            <ns0:artifactId>lifecycle-mapping</ns0:artifactId>
+            <ns0:version>0.12.0</ns0:version>
+            <ns0:configuration>
+              <ns0:mappingId>customizable</ns0:mappingId>
+              <ns0:configurators>
+                <ns0:configurator id="org.maven.ide.eclipse.jdt.javaConfigurator" />
+                <ns0:configurator id="org.maven.ide.eclipse.plexus.annotations.plexusConfigurator" />
+              </ns0:configurators>
+              <ns0:mojoExecutions>
+                <ns0:mojoExecution>org.apache.maven.plugins:maven-resources-plugin::</ns0:mojoExecution>
+              </ns0:mojoExecutions>
+            </ns0:configuration>
+          </ns0:plugin>
+        </ns0:plugins>
+      </ns0:build>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>specific-test</ns0:id>
+      <ns0:activation>
+        <ns0:property>
+          <ns0:name>test</ns0:name>
+        </ns0:property>
+      </ns0:activation>
+      <ns0:properties>
+        <ns0:failIfNoTests>false</ns0:failIfNoTests>
+      </ns0:properties>
+    </ns0:profile>
+    <ns0:profile>
+      <ns0:id>jdk11</ns0:id>
+      <ns0:properties>
+        
+        <ns0:doclint>none</ns0:doclint>
+        <ns0:maven.javadoc.skip>true</ns0:maven.javadoc.skip>
+        
+        <ns0:maven.compiler.release>${java.level}</ns0:maven.compiler.release>
+      </ns0:properties>
+      <ns0:activation>
+        <ns0:jdk>11</ns0:jdk>
+      </ns0:activation>
+    </ns0:profile>
+  </ns0:profiles>
+</ns0:project>
